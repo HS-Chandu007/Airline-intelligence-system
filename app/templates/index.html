@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="hero">
+    <h1>Airline Customer Intelligence System</h1>
+
+    <p>
+        Production-grade NLP system for airline sentiment and root-cause analysis.
+    </p>
+</div>
+
+<div class="card">
+
+    <form
+        hx-post="/predict"
+        hx-target="#prediction-result"
+        hx-swap="innerHTML"
+    >
+
+        <label>Airline Feedback</label>
+
+        <textarea
+            name="text"
+            placeholder="Enter customer feedback here..."
+            required
+        ></textarea>
+
+
+        <label>Airline</label>
+
+        <select name="airline" required>
+            <option value="United">United</option>
+            <option value="Delta">Delta</option>
+            <option value="American">American</option>
+            <option value="Southwest">Southwest</option>
+            <option value="US Airways">US Airways</option>
+            <option value="Virgin America">Virgin America</option>
+        </select>
+
+
+        <button type="submit">
+            Analyze Feedback
+        </button>
+
+    </form>
+</div>
+
+
+<div id="prediction-result"></div>
+
+
+<div class="metrics-grid">
+
+    <div class="metric-card">
+        <h2>Sentiment Model</h2>
+        <p>Logistic Regression + TF-IDF</p>
+        <span>ROC-AUC: 0.90</span>
+    </div>
+
+
+    <div class="metric-card">
+        <h2>Reason Model</h2>
+        <p>Root Cause Classification</p>
+        <span>Accuracy: 60%</span>
+    </div>
+
+</div>
+
+{% endblock %}
